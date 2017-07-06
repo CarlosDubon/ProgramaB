@@ -59,7 +59,8 @@ public class DBQuery {
             
             Investigador InvAux;
             
-            String Query="SELECT * FROM RESEARCHER WHERE IdResearcher = ?";
+            String Query="SELECT R.IdResearcher, R.nombres,R.apellidos, R.pass, C.CategoryName FROM "
+                    + "RESEARCHER as R, Category as C WHERE R.IdResearcher = ? AND R.IdCat= C.IdCat";
             PreparedStatement PQuery= con.prepareStatement(Query);
             PQuery.setString(1, Cod);
             ResultSet RS=PQuery.executeQuery(); 
@@ -68,8 +69,8 @@ public class DBQuery {
             
             if(RS.getString("IdResearcher").equals(Cod)){
                 
-                InvAux= new Investigador(RS.getString("IdResearcher"),RS.getString("nombres"),RS.getString("apellidos"),
-                        RS.getString("pass"));
+                InvAux= new Investigador(RS.getString("R.IdResearcher"),RS.getString("R.nombres"),RS.getString("R.apellidos"),
+                        RS.getString("R.pass"), RS.getString("C.CategoryName"));
                 PQuery.close();
                 conexion.cerrarConexion(con);
                 return InvAux;
