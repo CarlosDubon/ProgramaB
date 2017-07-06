@@ -12,15 +12,27 @@ package datos;
 public class Investigador {
     private String Cod;
     private String Nombre;
+    private String Cat;
     private String Apellido;
     private String Pass;
 
-    public Investigador(String Cod, String Nombre, String Apellido, String Pass) {
+    public Investigador(String Cod, String Nombre, String Apellido, String Pass, String Cat) {
         this.Cod = Cod;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Pass = Pass;
+        this.Cat= Cat;
     }
+
+    public String getCat() {
+        return Cat;
+    }
+
+    public void setCat(String Cat) {
+        this.Cat = Cat;
+    }
+    
+    
 
     public String getCod() {
         return Cod;
