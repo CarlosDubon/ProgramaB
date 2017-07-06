@@ -24,6 +24,16 @@ public class Investigador {
         this.Cat= Cat;
     }
 
+    public String getCat() {
+        return Cat;
+    }
+
+    public void setCat(String Cat) {
+        this.Cat = Cat;
+    }
+    
+    
+
     public String getCod() {
         return Cod;
     }

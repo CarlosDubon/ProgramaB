@@ -82,6 +82,7 @@ public class EliminarAgente extends JFrame{
                     txtBuscar.setText("");
                 }else{
                     txtNombre.setText(Inv.getNombre());
+                    txtCategoria.setText(Inv.getCat());
                     txtApellido.setText(Inv.getApellido());
                     txtPass.setText(Inv.getPass());
                     txtBuscar.setEditable(false);
@@ -95,7 +96,7 @@ public class EliminarAgente extends JFrame{
         btnEliminar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                DBase.EliminarInv(txtBuscar.getText());
+                DBase.EliminarInv(Inv.getCod());
                 JOptionPane.showMessageDialog(null, "Ha sido eliminado con exito","Informacion", JOptionPane.OK_OPTION);
                 dispose();
                 AdminPanel AD= new AdminPanel();
