@@ -58,7 +58,8 @@ public class AdminPanel extends JFrame{
         Eliminar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                dispose();
+                EliminarAgente EA= new EliminarAgente();
             }
         });
         
