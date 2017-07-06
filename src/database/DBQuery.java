@@ -1,6 +1,7 @@
 
 package database;
 
+import datos.Investigador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,7 +43,7 @@ public class DBQuery {
                 Confirmacion= false;
             }
             
-            
+            PQuery.close();
             conexion.cerrarConexion(con);
         } catch (SQLException ex) {
             System.out.println("ERROR: "+ex.getMessage());
@@ -52,10 +53,11 @@ public class DBQuery {
         return Confirmacion;
     }
     
-    public boolean EliminarInv(String Cod){
-        boolean Confirmacion;
+    public Investigador BuscarInv(String Cod){
         try{
             con= conexion.abrirConexion();
+            
+            Investigador InvAux;
             
             String Query="SELECT * FROM RESEARCHER WHERE IDDRESEARCHER = ?";
             PreparedStatement PQuery= con.prepareStatement(Query);
@@ -65,15 +67,37 @@ public class DBQuery {
             RS.next();
             
             if(RS.getString("IDRESEARCHER").equals(Cod)){
-                Query="DELETE FROM RESEARCHER WHERE IDRESEARCHER= ?";
-                PreparedStatement PS= con.prepareStatement(Query);
-                PS.setString(0, Cod);
-                PS.executeUpdate();
-                Confirmacion= true;
+                
+                InvAux= new Investigador(RS.getString("IdResearcher"),RS.getString("nombres"),RS.getString("apellidos"),
+                        RS.getString("pass"));
+                PQuery.close();
+                conexion.cerrarConexion(con);
+                return InvAux;
             }else{
-                Confirmacion= false;
+                PQuery.close();
+                conexion.cerrarConexion(con);
+                return null;
             }
             
+           } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+            return null;
+        }
+        
+        
+
+    }
+    
+    public boolean EliminarInv(String Cod){
+        boolean Confirmacion;
+        try{
+            
+            String Query="DELETE FROM RESEARCHER WHERE IDRESEARCHER= ?";
+            PreparedStatement PS= con.prepareStatement(Query);
+            PS.setString(0, Cod);
+            PS.executeUpdate();
+            PS.close();
+            Confirmacion= true;
             conexion.cerrarConexion(con);
         } catch (SQLException ex) {
             System.out.println("ERROR: "+ex.getMessage());
