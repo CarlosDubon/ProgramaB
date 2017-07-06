@@ -16,7 +16,7 @@ public class AgregarAgente extends JFrame{
     private Toolkit T1= Toolkit.getDefaultToolkit();
     private DBQuery DBase= new DBQuery();
     public AgregarAgente(){
-         JPanel jpDelete = new JPanel();
+        JPanel jpDelete = new JPanel();
         GridLayout gl = new GridLayout(5,2,10,10); 
         JTextField txtCod = new JTextField(12);
         JTextField txtNombre = new JTextField(12);
