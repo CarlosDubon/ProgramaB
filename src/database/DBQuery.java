@@ -52,6 +52,27 @@ public class DBQuery {
         return Confirmacion;
     }
     
+    public boolean EliminarInv(String Cod){
+        boolean Confirmacion;
+        try{
+            con= conexion.abrirConexion();
+            
+            String Query="DELETE FROM RESEARCHER WHERE IDDRESEARCHER = ?";
+            PreparedStatement PQuery= con.prepareStatement(Query);
+            PQuery.setString(0, Cod);
+            PQuery.executeUpdate();          
+            
+            conexion.cerrarConexion(con);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+            return false;
+        }
+        
+        return Confirmacion;
+        
+        
+    }
+    
     public boolean insertJugador(String Nick, int Puntaje){
         try{
            con = conexion.abrirConexion();
