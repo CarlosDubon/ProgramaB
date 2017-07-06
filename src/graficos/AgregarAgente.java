@@ -20,11 +20,10 @@ public class AgregarAgente extends JFrame{
         GridLayout gl = new GridLayout(5,2,10,10); 
         JTextField txtCod = new JTextField(12);
         JTextField txtNombre = new JTextField(12);
-        txtNombre.setEnabled(false);
         JTextField txtApellido = new JTextField(12);
-        txtApellido.setEnabled(false);
         JTextField txtPass = new JTextField(12);
-        txtPass.setEnabled(false);
+        JTextField txtCategoria = new JTextField(12);
+        
         
         jpDelete.setLayout(gl);
         jpDelete.add(new JLabel("Codigo: "));
@@ -33,6 +32,8 @@ public class AgregarAgente extends JFrame{
         jpDelete.add(txtNombre);
         jpDelete.add(new JLabel("Apellido: "));
         jpDelete.add(txtApellido);
+        jpDelete.add(new JLabel("Categoria: "));
+        jpDelete.add(txtCategoria);
         jpDelete.add(new JLabel("Contaseña : "));
         jpDelete.add(txtPass);
     

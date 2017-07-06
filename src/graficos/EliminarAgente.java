@@ -23,7 +23,7 @@ public class EliminarAgente extends JFrame{
     private Investigador Inv;
     public EliminarAgente(){
         JPanel jpDelete = new JPanel();
-        GridLayout gl = new GridLayout(5,2,10,10); 
+        GridLayout gl = new GridLayout(6,2,10,10); 
         JTextField txtBuscar = new JTextField(12);
         JTextField txtNombre = new JTextField(12);
         txtNombre.setEnabled(false);
@@ -31,6 +31,8 @@ public class EliminarAgente extends JFrame{
         txtApellido.setEnabled(false);
         JTextField txtPass = new JTextField(12);
         txtPass.setEnabled(false);
+        JTextField txtCategoria = new JTextField(6);
+        txtCategoria.setEnabled(false);
         
         jpDelete.setLayout(gl);
         jpDelete.add(new JLabel("Buscar: "));
@@ -39,6 +41,8 @@ public class EliminarAgente extends JFrame{
         jpDelete.add(txtNombre);
         jpDelete.add(new JLabel("Apellido: "));
         jpDelete.add(txtApellido);
+        jpDelete.add(new JLabel("Categoria: "));
+        jpDelete.add(txtCategoria);
         jpDelete.add(new JLabel("Contaseña : "));
         jpDelete.add(txtPass);
         jpDelete.add(new JLabel(""));
@@ -102,7 +106,7 @@ public class EliminarAgente extends JFrame{
         
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("ELIMINAR");
-        this.setSize(325, 225);
+        this.setSize(325, 250);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
