@@ -7,6 +7,8 @@ package graficos;
 
 import database.DBQuery;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -44,7 +46,42 @@ public class AdminPanel extends JFrame{
         Container cp = getContentPane();
         FlowLayout FL= new FlowLayout();
         cp.setLayout(FL);
-        cp.add(Panel, BorderLayout.CENTER);       
+        cp.add(Panel, BorderLayout.CENTER);    
+        
+        AdminInv.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        
+        Eliminar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        
+        Agregar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        
+        Reg.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
+        
+        Escuchar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+            }
+        });
         
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("ADMIN VIEW");
