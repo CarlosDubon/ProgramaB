@@ -57,10 +57,22 @@ public class DBQuery {
         try{
             con= conexion.abrirConexion();
             
-            String Query="DELETE FROM RESEARCHER WHERE IDDRESEARCHER = ?";
+            String Query="SELECT * FROM RESEARCHER WHERE IDDRESEARCHER = ?";
             PreparedStatement PQuery= con.prepareStatement(Query);
             PQuery.setString(0, Cod);
-            PQuery.executeUpdate();          
+            ResultSet RS=PQuery.executeQuery(); 
+            
+            RS.next();
+            
+            if(RS.getString("IDRESEARCHER").equals(Cod)){
+                Query="DELETE FROM RESEARCHER WHERE IDRESEARCHER= ?";
+                PreparedStatement PS= con.prepareStatement(Query);
+                PS.setString(0, Cod);
+                PS.executeUpdate();
+                Confirmacion= true;
+            }else{
+                Confirmacion= false;
+            }
             
             conexion.cerrarConexion(con);
         } catch (SQLException ex) {
