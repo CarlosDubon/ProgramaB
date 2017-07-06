@@ -6,8 +6,11 @@
 package graficos;
 
 import database.DBQuery;
+import datos.Investigador;
 import java.awt.*;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -17,9 +20,10 @@ import javax.swing.*;
 public class EliminarAgente extends JFrame{
     private Toolkit T1= Toolkit.getDefaultToolkit();
     private DBQuery DBase= new DBQuery();
+    private Investigador Inv;
     public EliminarAgente(){
         JPanel jpDelete = new JPanel();
-        GridLayout gl = new GridLayout(4,2,10,10); 
+        GridLayout gl = new GridLayout(5,2,10,10); 
         JTextField txtBuscar = new JTextField(12);
         JTextField txtNombre = new JTextField(12);
         txtNombre.setEnabled(false);
@@ -37,6 +41,7 @@ public class EliminarAgente extends JFrame{
         jpDelete.add(txtApellido);
         jpDelete.add(new JLabel("Contaseña : "));
         jpDelete.add(txtPass);
+        jpDelete.add(new JLabel(""));
     
         JPanel jpBotones = new JPanel();
         GridLayout glB = new GridLayout(1,3,5,5);
@@ -54,6 +59,47 @@ public class EliminarAgente extends JFrame{
         cp.setLayout(fl);
         cp.add(jpDelete);
         cp.add(jpBotones);
+        
+        btnCancel.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                dispose();
+                AdminPanel AD= new AdminPanel();
+            }
+            
+        });
+        
+        btnBuscar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                Inv= DBase.BuscarInv(txtBuscar.getText());
+                if(Inv == null){
+                    JOptionPane.showMessageDialog(null, "NO EXISTE EL INVESTIGADOR","ERROR", JOptionPane.ERROR_MESSAGE);
+                    txtBuscar.setText("");
+                }else{
+                    txtNombre.setText(Inv.getNombre());
+                    txtApellido.setText(Inv.getApellido());
+                    txtPass.setText(Inv.getPass());
+                    txtBuscar.setEditable(false);
+                    btnEliminar.setEnabled(true);
+                    btnBuscar.setEnabled(false);
+                }
+            }
+            
+        });
+        
+        btnEliminar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                DBase.EliminarInv(txtBuscar.getText());
+                JOptionPane.showMessageDialog(null, "Ha sido eliminado con exito","Informacion", JOptionPane.OK_OPTION);
+                dispose();
+                AdminPanel AD= new AdminPanel();
+            }
+            
+        });
+        
+        
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("ELIMINAR");
         this.setSize(325, 225);

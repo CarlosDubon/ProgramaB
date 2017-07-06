@@ -58,7 +58,7 @@ public class Login extends JFrame{
                     AdminPanel Ad= new AdminPanel();
                     dispose();
                 }else{
-                    JOptionPane.showMessageDialog(null, "ERROR EN LOS DATOS");
+                    JOptionPane.showMessageDialog(null, "ERROR EN LOS DATOS", "ERROR",  JOptionPane.ERROR_MESSAGE);
                     NickAdmin.setText("");
                     Pass.setText("");
                 }
