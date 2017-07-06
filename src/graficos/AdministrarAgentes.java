@@ -85,9 +85,6 @@ public class AdministrarAgentes extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    private void rellenarTabla() {
-        
-    }
 
 
 }

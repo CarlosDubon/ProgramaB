@@ -75,7 +75,8 @@ public class AdminPanel extends JFrame{
         Reg.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                dispose();
+                LoginFallido EA= new LoginFallido();
             }
         });
         
