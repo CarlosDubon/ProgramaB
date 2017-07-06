@@ -22,7 +22,13 @@ public class AgregarAgente extends JFrame{
         JTextField txtNombre = new JTextField(12);
         JTextField txtApellido = new JTextField(12);
         JTextField txtPass = new JTextField(12);
-        JTextField txtCategoria = new JTextField(12);
+        JComboBox cbxCategoria = new JComboBox();
+        cbxCategoria.addItem("Seleccione uno ...");
+        cbxCategoria.addItem("A");
+        cbxCategoria.addItem("B");
+        cbxCategoria.addItem("C");
+        cbxCategoria.addItem("D");
+        cbxCategoria.addItem("E");
         
         
         jpDelete.setLayout(gl);
@@ -33,7 +39,7 @@ public class AgregarAgente extends JFrame{
         jpDelete.add(new JLabel("Apellido: "));
         jpDelete.add(txtApellido);
         jpDelete.add(new JLabel("Categoria: "));
-        jpDelete.add(txtCategoria);
+        jpDelete.add(cbxCategoria);
         jpDelete.add(new JLabel("Contaseña : "));
         jpDelete.add(txtPass);
     
@@ -52,7 +58,7 @@ public class AgregarAgente extends JFrame{
         cp.add(jpBotones);
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("AGREGAR");
-        this.setSize(325, 225);
+        this.setSize(325, 240);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

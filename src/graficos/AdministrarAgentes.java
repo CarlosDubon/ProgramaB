@@ -16,21 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class AdministrarAgentes extends JFrame{
         private Toolkit T1= Toolkit.getDefaultToolkit();
         private DBQuery DBase= new DBQuery();
+        private JTable table;
+        private DefaultTableModel model;
     public AdministrarAgentes(){
-        String columna[] = new String[]{"Codigo","Categoria","Nombre","Apellido","Constraseña"};
-        JTable tabla = new JTable();
-        DefaultTableModel dt = new DefaultTableModel(null,columna);
-        JScrollPane scroll = new JScrollPane();
-        
-        
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        tabla.setFillsViewportHeight(true);
-        
-        this.getContentPane().add(scroll,BorderLayout.NORTH);
-        this.pack();
+        model = new DefaultTableModel();
         
         
         setLayout(new BorderLayout());
@@ -40,6 +29,10 @@ public class AdministrarAgentes extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void rellenarTabla() {
+        
     }
 
 
