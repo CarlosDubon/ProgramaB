@@ -59,14 +59,14 @@ public class DBQuery {
             
             Investigador InvAux;
             
-            String Query="SELECT * FROM RESEARCHER WHERE IDDRESEARCHER = ?";
+            String Query="SELECT * FROM RESEARCHER WHERE IdResearcher = ?";
             PreparedStatement PQuery= con.prepareStatement(Query);
-            PQuery.setString(0, Cod);
+            PQuery.setString(1, Cod);
             ResultSet RS=PQuery.executeQuery(); 
             
             RS.next();
             
-            if(RS.getString("IDRESEARCHER").equals(Cod)){
+            if(RS.getString("IdResearcher").equals(Cod)){
                 
                 InvAux= new Investigador(RS.getString("IdResearcher"),RS.getString("nombres"),RS.getString("apellidos"),
                         RS.getString("pass"));
@@ -92,9 +92,9 @@ public class DBQuery {
         boolean Confirmacion;
         try{
             
-            String Query="DELETE FROM RESEARCHER WHERE IDRESEARCHER= ?";
+            String Query="DELETE FROM RESEARCHER WHERE idresearcher = ?";
             PreparedStatement PS= con.prepareStatement(Query);
-            PS.setString(0, Cod);
+            PS.setString(1, Cod);
             PS.executeUpdate();
             PS.close();
             Confirmacion= true;
