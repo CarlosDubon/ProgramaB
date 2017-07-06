@@ -97,7 +97,7 @@ public class EliminarAgente extends JFrame{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 DBase.EliminarInv(Inv.getCod());
-                JOptionPane.showMessageDialog(null, "Ha sido eliminado con exito","Informacion", JOptionPane.OK_OPTION);
+                JOptionPane.showMessageDialog(null, "Ha sido eliminado con exito","Informacion", JOptionPane.INFORMATION_MESSAGE);
                 dispose();
                 AdminPanel AD= new AdminPanel();
             }

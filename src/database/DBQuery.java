@@ -96,6 +96,25 @@ public class DBQuery {
         return InvAux;
     }
     
+    public void AgregarInv(Investigador Inv){
+        try{
+            con=conexion.abrirConexion();
+            String Query="INSERT INTO RESERCHER (idresearcher, idcat, nombres, apellidos, pass) values (?,?,?,?,?);";
+            PreparedStatement PS= con.prepareStatement(Query);
+            PS.setString(1, Inv.getCod());
+            PS.setInt(2, Inv.getCatId());
+            PS.setString(3, Inv.getNombre());
+            PS.setString(4, Inv.getApellido());
+            PS.setString(5, Inv.getPass());
+            PS.executeUpdate();
+            PS.close();
+            conexion.cerrarConexion(con);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+            
+        }
+    }
+    
     public boolean EliminarInv(String Cod){
         boolean Confirmacion;
         try{

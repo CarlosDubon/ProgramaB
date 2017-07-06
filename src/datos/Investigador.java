@@ -5,6 +5,8 @@
  */
 package datos;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Dougl
@@ -32,6 +34,24 @@ public class Investigador {
         this.Cat = Cat;
     }
     
+    public int getCatId(){
+        switch (Cat.charAt(0)){
+            case 'A':
+                return 1;
+            case 'B':
+                return 2;
+            case 'C':
+                return 3;
+                
+            case 'D':
+                return 4;
+                
+            case 'E':
+                return 5;     
+        }
+        
+        return 0;
+    }
     
 
     public String getCod() {
