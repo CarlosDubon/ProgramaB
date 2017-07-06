@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package programab;
+package procesos;
+
+import graficos.Login;
 
 /**
  *
@@ -16,6 +18,7 @@ public class ProgramaB {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login Inicio= new Login();
     }
     
 }
