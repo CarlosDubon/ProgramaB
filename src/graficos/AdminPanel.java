@@ -66,7 +66,8 @@ public class AdminPanel extends JFrame{
         Agregar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                dispose();
+                AgregarAgente EA= new AgregarAgente();
             }
         });
         
