@@ -5,8 +5,11 @@
  */
 package graficos;
 import database.DBQuery;
+import datos.Investigador;
 import java.awt.*;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 /**
  *
@@ -56,6 +59,40 @@ public class AgregarAgente extends JFrame{
         cp.setLayout(fl);
         cp.add(jpDelete);
         cp.add(jpBotones);
+        
+        btnAgregar.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 if("".equals(txtCod.getText()) || txtApellido.getText().equals("")|| txtNombre.getText().equals("")
+                         || txtPass.getText().equals("") || cbxCategoria.getSelectedIndex() == 0){
+                         JOptionPane.showMessageDialog(null, "FALTAN CAMPOS A LLENAR","ERROR", JOptionPane.ERROR_MESSAGE);
+                 }else{
+                     if(DBase.BuscarInv(txtCod.getText())== null){
+                         Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), txtPass.getText(), (String) cbxCategoria.getSelectedItem());
+                         DBase.AgregarInv(Inv);
+                         JOptionPane.showMessageDialog(null, "El investigador ha sido agregado con exito","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                         dispose();
+                         AdminPanel AP= new AdminPanel();
+                     }else{
+                         JOptionPane.showMessageDialog(null, "EL CODIGO DE ESE INVESTIGADOR YA EXISTE","ERROR", JOptionPane.ERROR_MESSAGE);
+                         txtCod.setText("");
+                         txtNombre.setText("");
+                         txtApellido.setText("");
+                         txtPass.setText("");
+                         cbxCategoria.setSelectedIndex(0);
+                     }
+                 }
+             }
+         });
+        
+        btnCancel.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 dispose();
+                 AdminPanel AD= new AdminPanel();
+             }
+         });
+        
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("AGREGAR");
         this.setSize(325, 240);
@@ -63,5 +100,6 @@ public class AgregarAgente extends JFrame{
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+    
     
 }

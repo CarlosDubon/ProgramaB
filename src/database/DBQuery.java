@@ -99,7 +99,7 @@ public class DBQuery {
     public void AgregarInv(Investigador Inv){
         try{
             con=conexion.abrirConexion();
-            String Query="INSERT INTO RESERCHER (idresearcher, idcat, nombres, apellidos, pass) values (?,?,?,?,?);";
+            String Query="INSERT INTO RESEARCHER (idresearcher, idcat, nombres, apellidos, pass) values (?,?,?,?,?);";
             PreparedStatement PS= con.prepareStatement(Query);
             PS.setString(1, Inv.getCod());
             PS.setInt(2, Inv.getCatId());
