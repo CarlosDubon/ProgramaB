@@ -5,10 +5,14 @@
  */
 package graficos;
 import database.DBQuery;
+import datos.Investigador;
+import datos.LoginFail;
 import java.awt.*;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -33,14 +37,18 @@ public class LoginFallido extends JFrame {
         JScrollPane scrollPane = new JScrollPane(table);
         
         JPanel jpB = new JPanel();
-        JButton btnCancel = new JButton("Cancelar");
+        JButton btnCancel = new JButton("Salir");
+        JButton btnActualizar = new JButton("Actualizar");
         jpB.add(btnCancel);
+        jpB.add(btnActualizar);
         
         Container cp = getContentPane();
         FlowLayout fl = new FlowLayout();
         cp.setLayout(fl);
         cp.add(scrollPane);
         cp.add(jpB, Container.CENTER_ALIGNMENT);
+        
+        Repoblar();
         
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("FAILS");
@@ -57,7 +65,36 @@ public class LoginFallido extends JFrame {
              }
          });
         
+        btnActualizar.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 LoginFallido AD= new LoginFallido();
+                 dispose();
+                 
+             }
+         });
         
+        
+    }
+    
+    private void Repoblar(){
+        ArrayList<LoginFail> Lista= DBase.GetLoginFail();
+        LoginFail Inv;
+        Iterator I= Lista.iterator();
+        int filas=table.getRowCount()-1;
+        
+        
+        while(I.hasNext()){
+            
+            Inv= (LoginFail)I.next();
+            model.addRow(new Object[]{
+                Inv.getIDFail(),
+                Inv.getUserNick(),
+                Inv.getUserPass(),
+                Inv.getFecha(),
+                Inv.getHora()
+            });
+        }
     }
     
 }
