@@ -42,19 +42,17 @@ public class Login extends JFrame{
         NickAdmin.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) {
-                JTextField JAux= NickAdmin;
-                String Aux= JAux.getText();
-                int Limite= 5;
-                
-                if(Aux.length()> Limite){
-                    Aux=Aux.substring(0, Limite);
-                    JAux.setText(Aux);
-                }
-                
             }
-
             @Override
             public void keyPressed(KeyEvent ke) {
+                JTextField JAux= NickAdmin;
+                String Aux= JAux.getText();
+                int Limite= 30;
+                
+                if(Aux.length()> Limite-1){
+                    Aux=Aux.substring(0, Limite-1);
+                    JAux.setText(Aux);
+                }
             }
             @Override
             public void keyReleased(KeyEvent ke) {
