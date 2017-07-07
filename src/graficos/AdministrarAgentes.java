@@ -29,7 +29,6 @@ public class AdministrarAgentes extends JFrame{
         model.addColumn("Categoria");
         model.addColumn("Nombre");
         model.addColumn("Apellido");
-        model.addColumn("Contraseña");
         table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(450, 70));
         table.setEnabled(false);
@@ -110,7 +109,6 @@ public class AdministrarAgentes extends JFrame{
                         
                         txtNombre.setText(inv.getNombre());
                         txtApellido.setText(inv.getApellido());
-                        txtPass.setText(inv.getPass());
                         cbxCategoria.setSelectedIndex(inv.getCatId());
                     }else{
                         JOptionPane.showMessageDialog(null, "NO EXISTE EL INVESTIGADOR","ERROR", JOptionPane.ERROR_MESSAGE);
@@ -128,7 +126,7 @@ public class AdministrarAgentes extends JFrame{
             public void actionPerformed(ActionEvent ae) {
                 
                 if("".equals(txtCod.getText()) || txtApellido.getText().equals("")|| txtNombre.getText().equals("")
-                         || txtPass.getText().equals("") || cbxCategoria.getSelectedIndex() == 0){
+                         || cbxCategoria.getSelectedIndex() == 0){
                          JOptionPane.showMessageDialog(null, "FALTAN CAMPOS A LLENAR","ERROR", JOptionPane.ERROR_MESSAGE);
                  }else{
                     
