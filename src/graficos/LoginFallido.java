@@ -7,6 +7,8 @@ package graficos;
 import database.DBQuery;
 import java.awt.*;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -24,7 +26,8 @@ public class LoginFallido extends JFrame {
         model.addColumn("ID Fallo");
         model.addColumn("Usuario");
         model.addColumn("Contraseña");
-        model.addColumn("HORA/FECHA");
+        model.addColumn("Fecha");
+        model.addColumn("Hora");
         table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(450, 140));
         JScrollPane scrollPane = new JScrollPane(table);
@@ -45,6 +48,16 @@ public class LoginFallido extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        btnCancel.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent ae) {
+                 dispose();
+                 AdminPanel AD= new AdminPanel();
+             }
+         });
+        
+        
     }
     
 }
