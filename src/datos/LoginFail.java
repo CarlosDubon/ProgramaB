@@ -12,11 +12,16 @@ import java.sql.Timestamp;
  * @author Carlos
  */
 public class LoginFail {
+    private String IDFail;
     private String UserNick;
     private String UserPass;
     private Timestamp Fecha; 
 
-    public LoginFail() {
+    public LoginFail(String IDFail,String UserNick, String UserPass, Timestamp Fecha) {
+        this.IDFail = IDFail;
+        this.UserNick = UserNick;
+        this.UserPass = UserPass;
+        this.Fecha = Fecha;
     }
 
     public String getUserNick() {
@@ -26,6 +31,13 @@ public class LoginFail {
     public String getUserPass() {
         return UserPass;
     }
+
+    public String getIDFail() {
+        return IDFail;
+    }
+    
+
+
 
     /* public Timestamp getFecha() {
     return Fecha;

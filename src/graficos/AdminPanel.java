@@ -23,7 +23,7 @@ public class AdminPanel extends JFrame{
     public AdminPanel(){
         
         JPanel Panel= new JPanel();
-        GridLayout GL= new GridLayout(10, 1, 2, 2);
+        GridLayout GL= new GridLayout(12, 1, 2, 2);
         Panel.setLayout(GL);
         
         JButton AdminInv= new JButton("Administrar Investigadores");
@@ -31,6 +31,7 @@ public class AdminPanel extends JFrame{
         JButton Agregar= new JButton("Agregar Investigador");
         JButton Reg= new JButton("Registros Fallidos");
         JButton Escuchar= new JButton("Escuchar Peticiones");
+        JButton CerrarS= new JButton("Cerrar Sesion");
         
         Panel.add(new JLabel(""));
         Panel.add(AdminInv);
@@ -42,6 +43,8 @@ public class AdminPanel extends JFrame{
         Panel.add(Reg);
         Panel.add(new JLabel(""));
         Panel.add(Escuchar);
+        Panel.add(new JLabel(""));
+        Panel.add(CerrarS);
         
         Container cp = getContentPane();
         FlowLayout FL= new FlowLayout();
@@ -55,7 +58,13 @@ public class AdminPanel extends JFrame{
                 AdministrarAgentes EA= new AdministrarAgentes();
             }
         });
-        
+        CerrarS.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                dispose();
+                Login EA= new Login();
+            }
+        });
         Eliminar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -89,7 +98,7 @@ public class AdminPanel extends JFrame{
         
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("ADMIN VIEW");
-        this.setSize(250, 350);
+        this.setSize(250, 400);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

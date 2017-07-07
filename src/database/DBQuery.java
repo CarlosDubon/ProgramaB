@@ -2,6 +2,7 @@
 package database;
 
 import datos.Investigador;
+import datos.LoginFail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -182,6 +183,31 @@ public class DBQuery {
         }
         return Lista;
     }
+    public ArrayList<LoginFail> GetLoginFail(){
+        ArrayList <LoginFail> Lista= new ArrayList<>();
+        LoginFail InvAux;
+        try{
+            con= conexion.abrirConexion();
+                       
+            String Query="SELECT * FROM failedloginreg";
+            PreparedStatement PQuery= con.prepareStatement(Query);
+            ResultSet RS=PQuery.executeQuery(); 
+                        
+            while (RS.next()){
+                InvAux= new LoginFail(RS.getString("idfailedlogin"),RS.getString("usedNick"),RS.getString("usedpass"),
+                            RS.getTimestamp("hora"));
+                Lista.add(InvAux);
+            }
+            
+            PQuery.close();
+            conexion.cerrarConexion(con);
+            
+           } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+            return null;
+        }
+        return Lista;
+    }
     
     public boolean insertJugador(String Nick, int Puntaje){
         try{
@@ -204,6 +230,8 @@ public class DBQuery {
         }
         return true;
     }
+    
+ 
     
     
     
