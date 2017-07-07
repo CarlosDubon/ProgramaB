@@ -209,30 +209,4 @@ public class DBQuery {
         return Lista;
     }
     
-    public boolean insertJugador(String Nick, int Puntaje){
-        try{
-           con = conexion.abrirConexion();
-           
-           String Query="INSERT INTO jugador(nick,puntaje) VALUES(?,?)";
-           PreparedStatement PQuery = con.prepareStatement( Query );
-           PQuery.setString(1, Nick);
-           PQuery.setInt(2,Puntaje );
-
-           
-           
-           PQuery.executeUpdate();
-           PQuery.close();
-           conexion.cerrarConexion(con);
-        }catch(SQLException e){
-            System.out.println("Aqui esta el error");
-            System.out.println("ERROR: "+e.getMessage());
-            return false;
-        }
-        return true;
-    }
-    
- 
-    
-    
-    
-}
+ }

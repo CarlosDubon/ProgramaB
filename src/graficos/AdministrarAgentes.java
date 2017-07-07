@@ -23,6 +23,8 @@ public class AdministrarAgentes extends JFrame{
         private DBQuery DBase= new DBQuery();
         private JTable table;
         private DefaultTableModel model;
+        private String Aux;
+        
     public AdministrarAgentes(){
         model = new DefaultTableModel();
         model.addColumn("Codigo");
@@ -106,6 +108,7 @@ public class AdministrarAgentes extends JFrame{
                         cbxCategoria.setEnabled(true);
                         btnBuscar.setEnabled(false);
                         btnEditar.setEnabled(true);
+                        Aux=inv.getPass();
                         
                         txtNombre.setText(inv.getNombre());
                         txtApellido.setText(inv.getApellido());
@@ -130,7 +133,11 @@ public class AdministrarAgentes extends JFrame{
                          JOptionPane.showMessageDialog(null, "FALTAN CAMPOS A LLENAR","ERROR", JOptionPane.ERROR_MESSAGE);
                  }else{
                     
-                    Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), txtPass.getText(), (String) cbxCategoria.getSelectedItem());
+                    if(!txtPass.getText().isEmpty()){
+                        Aux=txtPass.getText();
+                    }
+                    
+                    Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), Aux, (String) cbxCategoria.getSelectedItem());
                     DBase.ModifyInv(Inv);
                     JOptionPane.showMessageDialog(null, "El investigador ha sido modificado con exito","Informacion", JOptionPane.INFORMATION_MESSAGE);
                     Repoblar();
@@ -176,8 +183,7 @@ public class AdministrarAgentes extends JFrame{
                 Inv.getCod(),
                 Inv.getCat(),
                 Inv.getNombre(),
-                Inv.getApellido(),
-                Inv.getPass()
+                Inv.getApellido()
             });
         }
     }

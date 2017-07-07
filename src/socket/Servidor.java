@@ -13,6 +13,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,8 +30,12 @@ public class Servidor {
     DataInputStream Entrada;
     private Thread T1;
     
-    public Servidor() throws IOException {
-        SerSckt = new ServerSocket(1254);
+    public Servidor() {
+        try {
+            SerSckt = new ServerSocket(1254);
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void waitCon() throws IOException{
@@ -56,6 +62,7 @@ public class Servidor {
     public void closeCon() throws IOException{
         Entrada.close();
         Salida.close();
+        SerSckt.close();
         Sout.close();
         Sckt1.close();
     }

@@ -35,7 +35,7 @@ public class EliminarAgente extends JFrame{
         txtCategoria.setEnabled(false);
         
         jpDelete.setLayout(gl);
-        jpDelete.add(new JLabel("Buscar: "));
+        jpDelete.add(new JLabel("Codigo: "));
         jpDelete.add(txtBuscar);
         jpDelete.add(new JLabel("Nombre: "));
         jpDelete.add(txtNombre);
@@ -43,8 +43,6 @@ public class EliminarAgente extends JFrame{
         jpDelete.add(txtApellido);
         jpDelete.add(new JLabel("Categoria: "));
         jpDelete.add(txtCategoria);
-        jpDelete.add(new JLabel("Contaseña : "));
-        jpDelete.add(txtPass);
         jpDelete.add(new JLabel(""));
     
         JPanel jpBotones = new JPanel();
@@ -84,7 +82,6 @@ public class EliminarAgente extends JFrame{
                     txtNombre.setText(Inv.getNombre());
                     txtCategoria.setText(Inv.getCat());
                     txtApellido.setText(Inv.getApellido());
-                    txtPass.setText(Inv.getPass());
                     txtBuscar.setEditable(false);
                     btnEliminar.setEnabled(true);
                     btnBuscar.setEnabled(false);

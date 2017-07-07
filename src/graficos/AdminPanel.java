@@ -23,8 +23,11 @@ public class AdminPanel extends JFrame{
     
     private Toolkit T1= Toolkit.getDefaultToolkit();
     private DBQuery DBase= new DBQuery();
-    private Servidor Server;
-     
+    private Thread Th1;
+    protected WaitCon WC;
+    protected static boolean isWait=false;
+    protected JButton Escuchar;
+    
     public AdminPanel(){
               
         JPanel Panel= new JPanel();
@@ -35,8 +38,14 @@ public class AdminPanel extends JFrame{
         JButton Eliminar= new JButton("Eliminar Investigador");
         JButton Agregar= new JButton("Agregar Investigador");
         JButton Reg= new JButton("Registros Fallidos");
-        JButton Escuchar= new JButton("Escuchar Peticiones");
+        Escuchar= new JButton("Escuchar Peticiones");
         JButton CerrarS= new JButton("Cerrar Sesion");
+        
+        if(isWait){
+            Escuchar.setEnabled(false);
+        }else{
+            Escuchar.setEnabled(true);
+        }
         
         Panel.add(new JLabel(""));
         Panel.add(AdminInv);
@@ -97,14 +106,12 @@ public class AdminPanel extends JFrame{
         Escuchar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                WaitCon WC= new WaitCon();
-                try {
-                    Server= new Servidor();
-                    Server.waitCon();
-                    
-                } catch (IOException ex) {
-                    Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
+                Escuchar.setEnabled(false);
+                WC= new WaitCon();
+                Th1= new Thread(new Esperar());
+                Th1.start();
+                
             }
         });
         
@@ -114,5 +121,37 @@ public class AdminPanel extends JFrame{
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    public class Esperar implements Runnable{
+        
+        private Servidor S1;
+        
+        
+        public Esperar(){
+            S1=new Servidor();
+        }
+        
+        @Override
+        public void run() {
+            isWait=true;
+            try {
+                
+                Thread.sleep(15);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            try {
+                S1.waitCon();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            WC.dispose();
+            isWait=false;
+            Escuchar.setEnabled(true);
+        }
+        
     }
 }

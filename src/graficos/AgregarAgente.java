@@ -68,7 +68,7 @@ public class AgregarAgente extends JFrame{
                          JOptionPane.showMessageDialog(null, "FALTAN CAMPOS A LLENAR","ERROR", JOptionPane.ERROR_MESSAGE);
                  }else{
                      if(DBase.BuscarInv(txtCod.getText())== null){
-                         Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), txtPass.getText(), (String) cbxCategoria.getSelectedItem());
+                         Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), Login.MD5(txtPass.getText()), (String) cbxCategoria.getSelectedItem());
                          DBase.AgregarInv(Inv);
                          JOptionPane.showMessageDialog(null, "El investigador ha sido agregado con exito","Informacion", JOptionPane.INFORMATION_MESSAGE);
                          dispose();
