@@ -25,8 +25,8 @@ public class AdminPanel extends JFrame{
     private DBQuery DBase= new DBQuery();
     private Servidor Server;
      
-    public AdminPanel() throws IOException{
-        Server= new Servidor();      
+    public AdminPanel(){
+              
         JPanel Panel= new JPanel();
         GridLayout GL= new GridLayout(12, 1, 2, 2);
         Panel.setLayout(GL);
@@ -99,7 +99,7 @@ public class AdminPanel extends JFrame{
             public void actionPerformed(ActionEvent ae) {
                 WaitCon WC= new WaitCon();
                 try {
-                    
+                    Server= new Servidor();
                     Server.waitCon();
                     
                 } catch (IOException ex) {
