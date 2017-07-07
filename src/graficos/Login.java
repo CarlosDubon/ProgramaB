@@ -59,6 +59,26 @@ public class Login extends JFrame{
             }
         });
         
+        Pass.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                JTextField JAux= Pass;
+                String Aux= JAux.getText();
+                int Limite= 32;
+                
+                if(Aux.length()> Limite-1){
+                    Aux=Aux.substring(0, Limite-1);
+                    JAux.setText(Aux);
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
+        
         //Boton
         JButton Verificar= new JButton("Login");
         JButton Salir= new JButton("Exit");

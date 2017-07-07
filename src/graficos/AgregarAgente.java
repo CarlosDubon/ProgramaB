@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 /**
  *
@@ -24,7 +26,7 @@ public class AgregarAgente extends JFrame{
         JTextField txtCod = new JTextField(12);
         JTextField txtNombre = new JTextField(12);
         JTextField txtApellido = new JTextField(12);
-        JTextField txtPass = new JTextField(12);
+        JPasswordField txtPass = new JPasswordField(12);
         JComboBox cbxCategoria = new JComboBox();
         cbxCategoria.addItem("Seleccione uno ...");
         cbxCategoria.addItem("A");
@@ -32,6 +34,86 @@ public class AgregarAgente extends JFrame{
         cbxCategoria.addItem("C");
         cbxCategoria.addItem("D");
         cbxCategoria.addItem("E");
+        
+        txtCod.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                JTextField JAux= txtCod;
+                String Aux= JAux.getText();
+                int Limite= 5;
+                
+                if(Aux.length()> Limite-1){
+                    Aux=Aux.substring(0, Limite-1);
+                    JAux.setText(Aux);
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
+        
+        txtNombre.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                JTextField JAux= txtNombre;
+                String Aux= JAux.getText();
+                int Limite= 30;
+                
+                if(Aux.length()> Limite-1){
+                    Aux=Aux.substring(0, Limite-1);
+                    JAux.setText(Aux);
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
+        
+        txtApellido.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                JTextField JAux= txtApellido;
+                String Aux= JAux.getText();
+                int Limite= 30;
+                
+                if(Aux.length()> Limite-1){
+                    Aux=Aux.substring(0, Limite-1);
+                    JAux.setText(Aux);
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
+        
+        txtPass.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+            }
+            @Override
+            public void keyPressed(KeyEvent ke) {
+                JTextField JAux= txtPass;
+                String Aux= JAux.getText();
+                int Limite= 32;
+                
+                if(Aux.length()> Limite-1){
+                    Aux=Aux.substring(0, Limite-1);
+                    JAux.setText(Aux);
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
         
         
         jpDelete.setLayout(gl);
