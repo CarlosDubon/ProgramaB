@@ -32,6 +32,7 @@ public class AdministrarAgentes extends JFrame{
         model.addColumn("Contraseña");
         table = new JTable(model);
         table.setPreferredScrollableViewportSize(new Dimension(450, 70));
+        table.setEnabled(false);
         JScrollPane scrollPane = new JScrollPane(table);
         
         JPanel jpDelete = new JPanel();
