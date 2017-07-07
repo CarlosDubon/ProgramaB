@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -134,6 +135,33 @@ public class DBQuery {
         return Confirmacion;
         
         
+    }
+    
+    public ArrayList<Investigador> GetInvestigadores(){
+        ArrayList <Investigador> Lista= new ArrayList<>();
+        Investigador InvAux;
+        try{
+            con= conexion.abrirConexion();
+                       
+            String Query="SELECT R.IdResearcher, R.nombres,R.apellidos, R.pass, C.CategoryName FROM "
+                    + "RESEARCHER as R, Category as C WHERE R.IdCat= C.IdCat";
+            PreparedStatement PQuery= con.prepareStatement(Query);
+            ResultSet RS=PQuery.executeQuery(); 
+                        
+            while (RS.next()){
+                InvAux= new Investigador(RS.getString("IdResearcher"),RS.getString("nombres"),RS.getString("apellidos"),
+                            RS.getString("pass"), RS.getString("CategoryName"));
+                Lista.add(InvAux);
+            }
+            
+            PQuery.close();
+            conexion.cerrarConexion(con);
+            
+           } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+            return null;
+        }
+        return Lista;
     }
     
     public boolean insertJugador(String Nick, int Puntaje){
