@@ -33,9 +33,10 @@ public class WaitCon extends JFrame{
         cp.setLayout(FL);
         cp.add(Panel, BorderLayout.CENTER); 
         
-        this.setLocation(((int)T1.getScreenSize().getWidth()/2)-135,(int)(T1.getScreenSize().getHeight()/2)-60);
+        this.setLocation(((int)T1.getScreenSize().getWidth()/2)+135,(int)(T1.getScreenSize().getHeight()/2)-110);
         this.setTitle("ScktServer");
         this.setSize(270, 120);
+        this.setUndecorated(true);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
