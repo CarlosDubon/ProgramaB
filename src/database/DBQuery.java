@@ -116,6 +116,25 @@ public class DBQuery {
         }
     }
     
+    public void ModifyInv(Investigador Inv){
+        try{
+            con=conexion.abrirConexion();
+            String Query="UPDATE RESEARCHER SET idcat = ?, nombres = ?, apellidos=?, pass = ? WHERE idresearcher= ?";
+            PreparedStatement PS= con.prepareStatement(Query);
+            PS.setString(5, Inv.getCod());
+            PS.setInt(1, Inv.getCatId());
+            PS.setString(2, Inv.getNombre());
+            PS.setString(3, Inv.getApellido());
+            PS.setString(4, Inv.getPass());
+            PS.executeUpdate();
+            PS.close();
+            conexion.cerrarConexion(con);
+        } catch (SQLException ex) {
+            System.out.println("ERROR: "+ex.getMessage());
+            
+        }
+    }
+    
     public boolean EliminarInv(String Cod){
         boolean Confirmacion;
         try{

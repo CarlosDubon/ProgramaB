@@ -8,6 +8,8 @@ import database.DBQuery;
 import datos.Investigador;
 import java.awt.*;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.*;
@@ -83,7 +85,74 @@ public class AdministrarAgentes extends JFrame{
         cp.add(jpDelete);
         cp.add(jpBotones);
         
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                dispose();
+                AdminPanel AP= new AdminPanel();
+            }
+        });
         
+        btnBuscar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                if(!txtCod.getText().isEmpty()){
+                    Investigador inv= DBase.BuscarInv(txtCod.getText());
+                    if(inv != null){
+                        txtCod.setEnabled(false);
+                        txtNombre.setEnabled(true);
+                        txtApellido.setEnabled(true);
+                        txtPass.setEnabled(true);
+                        cbxCategoria.setEnabled(true);
+                        btnBuscar.setEnabled(false);
+                        btnEditar.setEnabled(true);
+                        
+                        txtNombre.setText(inv.getNombre());
+                        txtApellido.setText(inv.getApellido());
+                        txtPass.setText(inv.getPass());
+                        cbxCategoria.setSelectedIndex(inv.getCatId());
+                    }else{
+                        JOptionPane.showMessageDialog(null, "NO EXISTE EL INVESTIGADOR","ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                }else
+                    JOptionPane.showMessageDialog(null, "FALTAN CAMPOS A LLENAR","ERROR", JOptionPane.ERROR_MESSAGE);
+                
+                
+            }
+        });
+        
+        btnEditar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                if("".equals(txtCod.getText()) || txtApellido.getText().equals("")|| txtNombre.getText().equals("")
+                         || txtPass.getText().equals("") || cbxCategoria.getSelectedIndex() == 0){
+                         JOptionPane.showMessageDialog(null, "FALTAN CAMPOS A LLENAR","ERROR", JOptionPane.ERROR_MESSAGE);
+                 }else{
+                    
+                    Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), txtPass.getText(), (String) cbxCategoria.getSelectedItem());
+                    DBase.ModifyInv(Inv);
+                    JOptionPane.showMessageDialog(null, "El investigador ha sido modificado con exito","Informacion", JOptionPane.INFORMATION_MESSAGE);
+                    Repoblar();
+                    txtCod.setEnabled(true);
+                    txtNombre.setEnabled(false);
+                    txtApellido.setEnabled(false);
+                    txtPass.setEnabled(false);
+                    cbxCategoria.setEnabled(false);
+                    btnBuscar.setEnabled(true);
+                    btnEditar.setEnabled(false);
+
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtPass.setText("");
+                    cbxCategoria.setSelectedIndex(0);
+                    AdministrarAgentes AG= new AdministrarAgentes();
+                    dispose();
+                }
+
+            }
+        });
         
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("ADMINISTRAR");
@@ -97,7 +166,9 @@ public class AdministrarAgentes extends JFrame{
         ArrayList<Investigador> Lista= DBase.GetInvestigadores();
         Investigador Inv;
         Iterator I= Lista.iterator();
-        int Pos;
+        int filas=table.getRowCount()-1;
+        
+        
         while(I.hasNext()){
             
             Inv= (Investigador)I.next();
