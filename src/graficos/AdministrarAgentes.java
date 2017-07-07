@@ -5,8 +5,11 @@
  */
 package graficos;
 import database.DBQuery;
+import datos.Investigador;
 import java.awt.*;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -45,6 +48,7 @@ public class AdministrarAgentes extends JFrame{
         cbxCategoria.addItem("C");
         cbxCategoria.addItem("D");
         cbxCategoria.addItem("E");
+        cbxCategoria.setEnabled(false);
         
         
         jpDelete.setLayout(gl);
@@ -70,6 +74,8 @@ public class AdministrarAgentes extends JFrame{
         jpBotones.add(btnBuscar);
         jpBotones.add(btnEditar);
         
+        Repoblar();
+        
         Container cp = getContentPane();
         FlowLayout fl = new FlowLayout();
         cp.setLayout(fl);
@@ -77,12 +83,33 @@ public class AdministrarAgentes extends JFrame{
         cp.add(jpDelete);
         cp.add(jpBotones);
         
+        
+        
         this.setLocation(((int)T1.getScreenSize().getWidth()/2)-125,(int)(T1.getScreenSize().getHeight()/2)-200);
         this.setTitle("ADMINISTRAR");
         this.setSize(500, 400);
         this.setVisible(true);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+    
+    private void Repoblar(){
+        ArrayList<Investigador> Lista= DBase.GetInvestigadores();
+        Investigador Inv;
+        Iterator I= Lista.iterator();
+        int Pos;
+        while(I.hasNext()){
+            
+            Inv= (Investigador)I.next();
+            
+            model.addRow(new Object[]{
+                Inv.getCod(),
+                Inv.getCat(),
+                Inv.getNombre(),
+                Inv.getApellido(),
+                Inv.getPass()
+            });
+        }
     }
 
 
