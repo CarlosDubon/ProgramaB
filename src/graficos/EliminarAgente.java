@@ -55,6 +55,7 @@ public class EliminarAgente extends JFrame{
         jpBotones.add(btnCancel);
         jpBotones.add(btnBuscar);
         jpBotones.add(btnEliminar);
+        
                 
         Container cp = getContentPane();
         FlowLayout fl = new FlowLayout();

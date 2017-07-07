@@ -60,6 +60,8 @@ public class AdminPanel extends JFrame{
         Panel.add(new JLabel(""));
         Panel.add(CerrarS);
         
+        
+        
         Container cp = getContentPane();
         FlowLayout FL= new FlowLayout();
         cp.setLayout(FL);

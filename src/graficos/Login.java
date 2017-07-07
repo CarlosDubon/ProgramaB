@@ -9,6 +9,8 @@ import database.DBQuery;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javafx.scene.control.PasswordField;
 import javax.swing.*;
 
@@ -36,6 +38,28 @@ public class Login extends JFrame{
         Panel.add(Pass);
         Panel.add(new JLabel(""));
         Panel.add(new JLabel(""));
+        
+        NickAdmin.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) {
+                JTextField JAux= NickAdmin;
+                String Aux= JAux.getText();
+                int Limite= 5;
+                
+                if(Aux.length()> Limite){
+                    Aux=Aux.substring(0, Limite);
+                    JAux.setText(Aux);
+                }
+                
+            }
+
+            @Override
+            public void keyPressed(KeyEvent ke) {
+            }
+            @Override
+            public void keyReleased(KeyEvent ke) {
+            }
+        });
         
         //Boton
         JButton Verificar= new JButton("Login");
