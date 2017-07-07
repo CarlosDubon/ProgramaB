@@ -36,7 +36,7 @@ public class LoginFail {
         date = sdate[0];
         return date;
     }
-        public String getHora(){
+    public String getHora(){
         String date = ""+Fecha;
         String sdate[] = date.split(" ");
         date = sdate[1];
