@@ -9,7 +9,11 @@ import database.DBQuery;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import socket.Servidor;
 
 /**
  *
@@ -19,9 +23,10 @@ public class AdminPanel extends JFrame{
     
     private Toolkit T1= Toolkit.getDefaultToolkit();
     private DBQuery DBase= new DBQuery();
-    
-    public AdminPanel(){
-        
+    private Servidor Server;
+     
+    public AdminPanel() throws IOException{
+        Server= new Servidor();      
         JPanel Panel= new JPanel();
         GridLayout GL= new GridLayout(12, 1, 2, 2);
         Panel.setLayout(GL);
@@ -92,7 +97,14 @@ public class AdminPanel extends JFrame{
         Escuchar.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent ae) {
-                
+                WaitCon WC= new WaitCon();
+                try {
+                    
+                    Server.waitCon();
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
         
