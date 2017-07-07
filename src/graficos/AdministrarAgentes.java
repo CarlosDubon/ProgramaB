@@ -212,7 +212,7 @@ public class AdministrarAgentes extends JFrame{
                  }else{
                     
                     if(!txtPass.getText().isEmpty()){
-                        Aux=txtPass.getText();
+                        Aux=Login.MD5(txtPass.getText());
                     }
                     
                     Investigador Inv= new Investigador(txtCod.getText(), txtNombre.getText(), txtApellido.getText(), Aux, (String) cbxCategoria.getSelectedItem());
